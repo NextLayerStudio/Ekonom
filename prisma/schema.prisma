@@ -1,0 +1,40 @@
+// Prisma schema — database is Neon (PostgreSQL).
+// Set DATABASE_URL in .env once Neon is provisioned, then run:
+//   npx prisma migrate dev --name init
+//   npm run db:seed   (creates the first admin user)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  createdAt DateTime @default(now())
+  posts     Post[]
+}
+
+model Post {
+  id            String    @id @default(cuid())
+  title         String
+  slug          String    @unique
+  excerpt       String?
+  content       String    @db.Text
+  coverImage    String?
+  published     Boolean   @default(false)
+  publishedAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  author        User?     @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  authorId      String?
+
+  @@index([published, publishedAt])
+}

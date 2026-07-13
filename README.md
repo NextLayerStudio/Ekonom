@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Andrej Brehovský — ekonóm & účtovník
 
-## Getting Started
+Informačný web s kontaktným formulárom a administráciou blogu.
 
-First, run the development server:
+**Stack:** Next.js 16 (App Router) · TypeScript · Tailwind CSS v4 · Prisma + Neon (PostgreSQL) · Resend · Tiptap editor.
+
+Font: **Libre Caslon Text**. Akcentová farba: **#FCEE23**.
+
+---
+
+## Rýchly štart
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env   # doplňte reálne hodnoty
+npm run dev            # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Web sa spustí aj bez databázy — blog jednoducho zobrazí prázdny stav,
+kým nepripojíte Neon.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Štruktúra
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `src/app/(site)/` — verejný web
+  - `/` domov, `/o-mne`, `/sluzby`, `/blog`, `/blog/[slug]`, `/kontakt`
+- `src/app/admin/` — administrácia (prihlásenie + správa blogu)
+  - `/admin/login`, `/admin` (prehľad), `/admin/posts/new`, `/admin/posts/[id]/edit`
+- `src/app/api/` — API routes (kontakt, auth, blog CRUD)
+- `src/components/` — komponenty (verejné + `admin/` + `ui/`)
+- `src/lib/` — obsah, dáta, auth, prisma
+- `prisma/` — schéma databázy a seed
 
-## Learn More
+Sivé plochy v dizajne sú `ImagePlaceholder` — nahradia sa reálnymi fotkami
+tak, že komponentu odovzdáte `src`.
 
-To learn more about Next.js, take a look at the following resources:
+## Databáza (Neon + Prisma)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Vytvorte projekt na [neon.tech](https://neon.tech) a skopírujte connection stringy.
+2. Do `.env` doplňte `DATABASE_URL` (pooled) a `DIRECT_URL` (direct).
+3. Vytvorte tabuľky a prvého admina:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run db:migrate     # vytvorí tabuľky (alebo: npm run db:push)
+npm run db:seed        # vytvorí admin účet z ADMIN_EMAIL / ADMIN_PASSWORD
+```
 
-## Deploy on Vercel
+`npm run db:studio` otvorí Prisma Studio pre prehľad dát.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Prihlásenie do administrácie
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`/admin/login` — údaje podľa `ADMIN_EMAIL` a `ADMIN_PASSWORD` z `.env`
+(nastavené pri `db:seed`). Session je podpísaný `AUTH_SECRET` cookie.
+
+## Kontaktný formulár (Resend)
+
+1. Vytvorte API kľúč na [resend.com](https://resend.com).
+2. Do `.env` doplňte `RESEND_API_KEY`, `CONTACT_TO_EMAIL` a `CONTACT_FROM_EMAIL`
+   (odosielateľ musí byť overená doména; na testy funguje `onboarding@resend.dev`).
+
+Bez `RESEND_API_KEY` sa správa iba zaloguje do konzoly (vhodné pre lokálny vývoj).
+
+## Nasadenie
+
+Odporúčaný Vercel. Nastavte rovnaké premenné prostredia ako v `.env`.
+`npm run build` spúšťa `prisma generate` automaticky.
