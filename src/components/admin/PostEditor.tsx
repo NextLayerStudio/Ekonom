@@ -7,6 +7,7 @@ import { ArrowLeft } from "lucide-react";
 import type { Post } from "@prisma/client";
 import { Button } from "@/components/ui/Button";
 import { RichTextEditor } from "@/components/admin/RichTextEditor";
+import { ImageUpload } from "@/components/admin/ImageUpload";
 import { slugify } from "@/lib/posts";
 
 type Props = { post?: Post };
@@ -155,16 +156,11 @@ export function PostEditor({ post }: Props) {
           </div>
 
           <div className="rounded-xl border border-line bg-white p-5">
-            <h3 className="mb-4 text-sm font-semibold">Titulný obrázok</h3>
-            <input
+            <ImageUpload
+              label="Titulný obrázok"
               value={coverImage}
-              onChange={(e) => setCoverImage(e.target.value)}
-              placeholder="https://…"
-              className="w-full rounded-lg border border-line bg-white px-3 py-2 text-sm outline-none focus:border-ink"
+              onChange={setCoverImage}
             />
-            <p className="mt-2 text-xs text-muted">
-              Vložte URL obrázka. (Nahrávanie súborov doplníme neskôr.)
-            </p>
           </div>
         </aside>
       </div>

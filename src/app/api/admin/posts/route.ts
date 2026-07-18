@@ -1,18 +1,9 @@
 import { NextResponse } from "next/server";
-import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
 import { slugify } from "@/lib/posts";
 import { sanitizePostHtml } from "@/lib/sanitize";
-
-const postSchema = z.object({
-  title: z.string().min(1, "Zadajte názov."),
-  slug: z.string().optional(),
-  excerpt: z.string().optional(),
-  content: z.string().default(""),
-  coverImage: z.string().url().optional().or(z.literal("")),
-  published: z.boolean().default(false),
-});
+import { postSchema } from "@/lib/post-schema";
 
 async function uniqueSlug(base: string): Promise<string> {
   const root = slugify(base) || "clanok";

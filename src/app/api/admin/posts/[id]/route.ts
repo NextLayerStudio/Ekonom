@@ -1,18 +1,9 @@
 import { NextResponse } from "next/server";
-import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
 import { slugify } from "@/lib/posts";
 import { sanitizePostHtml } from "@/lib/sanitize";
-
-const updateSchema = z.object({
-  title: z.string().min(1, "Zadajte názov."),
-  slug: z.string().optional(),
-  excerpt: z.string().optional(),
-  content: z.string().default(""),
-  coverImage: z.string().url().optional().or(z.literal("")),
-  published: z.boolean().default(false),
-});
+import { postSchema } from "@/lib/post-schema";
 
 type Params = { params: Promise<{ id: string }> };
 
@@ -24,7 +15,7 @@ export async function PUT(req: Request, { params }: Params) {
   const existing = await prisma.post.findUnique({ where: { id } });
   if (!existing) return NextResponse.json({ error: "Nenájdené." }, { status: 404 });
 
-  const parsed = updateSchema.safeParse(await req.json().catch(() => null));
+  const parsed = postSchema.safeParse(await req.json().catch(() => null));
   if (!parsed.success) {
     return NextResponse.json(
       { error: parsed.error.issues[0]?.message ?? "Neplatné údaje." },
