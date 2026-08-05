@@ -11,6 +11,11 @@
 
   --font-serif: var(--font-libre-caslon), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-libre-caslon), Georgia, serif;
+  --font-inter: var(--font-inter-family), ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-inter {
+  font-family: var(--font-inter-family), ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { nav, site } from "@/lib/site";
+import { Logo } from "@/components/Logo";
 import { Container } from "@/components/ui/Container";
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from "@/components/ui/SocialIcons";
 
@@ -9,9 +10,7 @@ export function Footer() {
     <footer className="border-t border-line bg-white">
       <Container className="grid grid-cols-1 gap-10 py-14 md:grid-cols-4">
         <div>
-          <div className="mb-3 h-10 w-24 image-placeholder rounded" />
-          <p className="text-lg font-semibold">{site.name}</p>
-          <p className="text-sm text-muted">{site.role}</p>
+          <Logo size="sm" />
         </div>
 
         <div>

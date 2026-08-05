@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { Button } from "@/components/ui/Button";
-import { site } from "@/lib/site";
+import { Logo } from "@/components/Logo";
 
 function LoginForm() {
   const router = useRouter();
@@ -38,9 +38,8 @@ function LoginForm() {
   return (
     <div className="flex min-h-screen items-center justify-center px-6">
       <div className="w-full max-w-sm">
-        <div className="mb-8 text-center">
-          <p className="text-2xl font-bold">{site.name}</p>
-          <p className="text-sm text-muted">Administrácia</p>
+        <div className="mb-8 flex justify-center">
+          <Logo href={false} tagline="Administrácia" />
         </div>
 
         <form

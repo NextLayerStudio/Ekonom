@@ -7,9 +7,9 @@ import { values, industries, certifications } from "@/lib/content";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "O mne",
+  title: "O firme",
   description:
-    "Andrej Brehovský — ekonóm a certifikovaný účtovník pre malé a stredné firmy.",
+    "Happy Gold — ekonóm a certifikovaný účtovník pre malé a stredné firmy.",
 };
 
 export default function AboutPage() {
@@ -20,7 +20,7 @@ export default function AboutPage() {
         <Container className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
           <div>
             <span className="mb-3 inline-block text-xs uppercase tracking-[0.25em] text-muted">
-              O mne
+              O firme
             </span>
             <h1 className="text-4xl leading-[1.1] md:text-6xl">{site.name}</h1>
             <p className="mt-4 text-xl md:text-2xl">

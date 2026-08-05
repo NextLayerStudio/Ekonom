@@ -7,6 +7,8 @@ import {
   Lightbulb,
   Handshake,
   ShieldCheck,
+  Calculator,
+  User,
   type LucideIcon,
 } from "lucide-react";
 
@@ -23,11 +25,11 @@ export type Service = {
 export const services: Service[] = [
   {
     slug: "vedenie-uctovnictva",
-    icon: BookText,
+    icon: Calculator,
     title: "Vedenie účtovníctva",
     headline: "Jednoduché aj podvojné účtovníctvo",
     short:
-      "Kompletné spracovanie účtovníctva podľa platnej legislatívy. O papierovačky sa postarám ja, vy sa venujte biznisu.",
+      "Jednoduché aj podvojné účtovníctvo. Mesačné spracovanie dokladov, DPH, komunikácia s úradmi.",
     includes: [
       "Spracovanie prvotných dokladov",
       "Vedenie účtovného denníka a hlavnej knihy",
@@ -47,7 +49,7 @@ export const services: Service[] = [
     title: "Mzdová agenda a HR",
     headline: "Mzdy, odvody, prihlásenia — všetko v poriadku",
     short:
-      "Spracovanie miezd, odvodov a prihlášok načas a bez chýb. Vaši zamestnanci budú vždy vyplatení správne.",
+      "Výpočet miezd, prihlasovanie zamestnancov, ročné zúčtovanie dane, potvrdenia a výkazy.",
     includes: [
       "Mesačné spracovanie miezd",
       "Prihlášky a odhlášky do poisťovní",
@@ -67,7 +69,7 @@ export const services: Service[] = [
     title: "Daňové poradenstvo",
     headline: "Legálne menej platiť na daniach",
     short:
-      "Optimalizácia daní v medziach zákona. Poradím vám, ako platiť len toľko, koľko naozaj musíte.",
+      "Daňové priznania, optimalizácia daňovej záťaže, zastupovanie pri daňových kontrolách.",
     includes: [
       "Daň z príjmov FO a PO",
       "Optimalizácia daňového základu",
@@ -87,7 +89,7 @@ export const services: Service[] = [
     title: "Finančné výkazy a reporting",
     headline: "Viete, kde stojí vaša firma?",
     short:
-      "Pravidelné reporty a prehľady, ktorým rozumiete. Rozhodujte sa na základe čísel, nie pocitov.",
+      "Súvaha, výkaz ziskov a strát, cash flow analýzy — prehľad, ktorý potrebujete na rozhodovanie.",
     includes: [
       "Mesačné a kvartálne reporty",
       "Cash-flow prehľady",
@@ -107,7 +109,7 @@ export const services: Service[] = [
     title: "Zakladanie firmy",
     headline: "Začnite správnou nohou",
     short:
-      "Založenie s.r.o. či živnosti a start-up poradenstvo od A po Z. Postavíme základy tak, aby ste sa vyhli neskorším problémom.",
+      "Pomoc s výberom právnej formy, nastavením účtovníctva od nuly, registrácia na úradoch.",
     includes: [
       "Založenie s.r.o. a živnosti",
       "Príprava zakladateľských dokumentov",
@@ -123,11 +125,11 @@ export const services: Service[] = [
   },
   {
     slug: "ekonomicke-poradenstvo",
-    icon: Lightbulb,
+    icon: Calculator,
     title: "Ekonomické poradenstvo",
     headline: "Stratégia, nie len čísla",
     short:
-      "Pozerám sa na vašu firmu ako partner. Pomôžem s cenotvorbou, plánovaním a rozhodovaním o investíciách.",
+      "Analýza nákladov, cenovej stratégie, plánovanie a finančné prognózy pre rast vašej firmy.",
     includes: [
       "Nastavenie cenotvorby a marží",
       "Finančné plánovanie a rozpočty",
@@ -163,19 +165,25 @@ export const values = [
 
 export const homeValues = [
   {
-    icon: BarChart3,
-    title: "Poradím v číslach",
-    text: "Reálne odporúčania na základe vašich čísel, nie všeobecné frázy.",
+    icon: Calculator,
+    title: "Poriadok v číslach",
+    lines: [
+      "Vždy viete, kde stojíte.",
+      "Žiadne prekvapenia od daňového úradu.",
+    ],
   },
   {
-    icon: Handshake,
+    icon: User,
     title: "Ľudský prístup",
-    text: "Rozprávam jazykom, ktorému rozumiete. Som partner, nie len dodávateľ.",
+    lines: [
+      "Nehovorím v paragrafoch.",
+      "Vysvetlím vám všetko zrozumiteľne.",
+    ],
   },
   {
     icon: ShieldCheck,
     title: "Spoľahlivosť",
-    text: "Termíny a presnosť sú u mňa samozrejmosťou, nie bonusom.",
+    lines: ["Termíny sú pre mňa záväzok,", "nie odporúčanie."],
   },
 ];
 
@@ -227,7 +235,7 @@ export const testimonials = [
   },
   {
     quote:
-      "Andrej nám pomohol nastaviť reporting tak, že sa konečne rozhodujeme podľa čísel. Odporúčam každému, kto to s firmou myslí vážne.",
+      "Happy Gold nám pomohol nastaviť reporting tak, že sa konečne rozhodujeme podľa čísel. Odporúčam každému, kto to s firmou myslí vážne.",
     name: "Martin Novák",
     role: "konateľ s.r.o.",
   },

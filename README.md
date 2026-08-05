@@ -1,4 +1,4 @@
-# Andrej Brehovský — ekonóm & účtovník
+# Happy Gold — ekonóm & účtovník
 
 Informačný web s kontaktným formulárom a administráciou blogu.
 
@@ -22,7 +22,7 @@ kým nepripojíte Neon.
 ## Štruktúra
 
 - `src/app/(site)/` — verejný web
-  - `/` domov, `/o-mne`, `/sluzby`, `/blog`, `/blog/[slug]`, `/kontakt`
+  - `/` domov, `/o-firme`, `/sluzby`, `/blog`, `/blog/[slug]`, `/kontakt`
 - `src/app/admin/` — administrácia (prihlásenie + správa blogu)
   - `/admin/login`, `/admin` (prehľad), `/admin/posts/new`, `/admin/posts/[id]/edit`
 - `src/app/api/` — API routes (kontakt, auth, blog CRUD)

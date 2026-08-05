@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { FileText, LayoutDashboard, LogOut, Plus, ExternalLink } from "lucide-react";
-import { site } from "@/lib/site";
+import { Logo } from "@/components/Logo";
 
 const links = [
   { href: "/admin", label: "Prehľad", icon: LayoutDashboard, exact: true },
@@ -29,9 +29,8 @@ export function AdminShell({
   return (
     <div className="mx-auto flex min-h-screen max-w-7xl">
       <aside className="hidden w-64 shrink-0 flex-col border-r border-line bg-white px-5 py-8 md:flex">
-        <div className="px-2">
-          <p className="text-lg font-bold">{site.name}</p>
-          <p className="text-xs text-muted">Administrácia</p>
+        <div className="px-1">
+          <Logo href="/admin" size="sm" tagline="Administrácia" />
         </div>
 
         <nav className="mt-8 flex flex-1 flex-col gap-1">

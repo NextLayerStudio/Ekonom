@@ -5,6 +5,9 @@ type Props = {
   src?: string | null;
   alt?: string;
   rounded?: boolean;
+  priority?: boolean;
+  objectPosition?: string;
+  sizes?: string;
 };
 
 /**
@@ -16,12 +19,23 @@ export function ImagePlaceholder({
   src,
   alt = "",
   rounded = false,
+  priority = false,
+  objectPosition = "center",
+  sizes = "(max-width: 768px) 100vw, 50vw",
 }: Props) {
   const radius = rounded ? "rounded-2xl" : "";
   if (src) {
     return (
       <div className={`relative overflow-hidden ${radius} ${className}`}>
-        <Image src={src} alt={alt} fill className="object-cover" />
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          priority={priority}
+          sizes={sizes}
+          className="object-cover"
+          style={{ objectPosition }}
+        />
       </div>
     );
   }

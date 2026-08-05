@@ -4,7 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { nav, site } from "@/lib/site";
+import { nav } from "@/lib/site";
+import { Logo } from "@/components/Logo";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
@@ -15,12 +16,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-white/90 backdrop-blur">
       <Container className="flex h-16 items-center justify-between md:h-20">
-        <Link href="/" className="flex flex-col leading-tight" onClick={() => setOpen(false)}>
-          <span className="text-lg font-bold tracking-tight md:text-xl">{site.name}</span>
-          <span className="text-[11px] uppercase tracking-[0.2em] text-muted">
-            {site.role}
-          </span>
-        </Link>
+        <Logo showMark={false} onClick={() => setOpen(false)} />
 
         <nav className="hidden items-center gap-8 md:flex">
           {nav.map((item) => {
