@@ -6,6 +6,16 @@ import { Suspense } from "react";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/Logo";
 
+function getRedirectPath(from: string | null): string {
+  if (!from?.startsWith("/admin") || from.startsWith("/admin/login")) {
+    return "/admin";
+  }
+  if (from === "/admin" || from.startsWith("/admin/posts")) {
+    return from;
+  }
+  return "/admin";
+}
+
 function LoginForm() {
   const router = useRouter();
   const params = useSearchParams();
@@ -25,8 +35,7 @@ function LoginForm() {
     });
 
     if (res.ok) {
-      const from = params.get("from") || "/admin";
-      router.replace(from);
+      router.replace(getRedirectPath(params.get("from")));
       router.refresh();
     } else {
       const body = await res.json().catch(() => ({}));

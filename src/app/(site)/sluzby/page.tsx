@@ -5,6 +5,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ContactSection } from "@/components/ContactSection";
 import { services, process } from "@/lib/content";
+import { inter } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   title: "Služby",
@@ -16,17 +17,27 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-16 md:py-24">
-        <Container>
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#fafafa] to-white py-28 md:py-40 lg:min-h-[480px] lg:py-48 xl:min-h-[540px] xl:py-52">
+        <Container className="flex flex-col justify-center">
           <span className="mb-3 inline-block text-xs uppercase tracking-[0.25em] text-muted">
             Služby
           </span>
           <h1 className="max-w-3xl text-4xl leading-[1.1] md:text-6xl">
             Komplexný ekonomický servis pre <span className="bg-brand px-2">vašu firmu</span>
           </h1>
-          <p className="mt-6 max-w-xl text-lg text-muted">
-            Postarám sa o kompletnú ekonomickú agendu, aby ste sa vy mohli
-            venovať rozvoju svojho biznisu. Vyberte si presne to, čo potrebujete.
+          <p className={`${inter.className} mt-6 max-w-xl text-lg text-muted`}>
+            Postaráte sa o biznis a o ekonomiku sa postarám ja. Od jednoduchého
+            účtovníctva až po strategické finančné rozhodnutia.
+          </p>
+        </Container>
+      </section>
+
+      <section className="border-t border-line py-12 md:py-16">
+        <Container>
+          <p className="mx-auto max-w-2xl text-center text-lg leading-relaxed text-ink md:text-xl">
+            Každá firma je iná. Niektorí potrebujú len spracovanie faktúr, iní
+            chcú plnohodnotného finančného partnera. U mňa si vyberiete presne
+            to, čo potrebujete — nič navyše, nič chýbajúce.
           </p>
         </Container>
       </section>
@@ -92,18 +103,18 @@ export default function ServicesPage() {
 
       {/* Process */}
       <section className="border-t border-line bg-[#fafafa] py-20 md:py-28">
-        <Container>
+        <Container className="max-w-7xl px-4 md:px-8 lg:max-w-[1480px] lg:px-10">
           <SectionHeading eyebrow="Postup" title="Ako vyzerá spolupráca" />
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6 xl:gap-8">
             {process.map((p) => (
               <div
                 key={p.step}
-                className="rounded-2xl border border-line bg-white p-6"
+                className="min-h-[220px] rounded-2xl border border-line bg-white p-8 md:min-h-[240px] md:p-10"
               >
-                <span className="text-sm font-semibold text-muted">{p.step}</span>
-                <div className="my-3 h-0.5 w-10 bg-brand" />
-                <h3 className="text-lg">{p.title}</h3>
-                <p className="mt-2 text-sm text-muted">{p.text}</p>
+                <span className="text-base font-semibold text-muted">{p.step}</span>
+                <div className="my-4 h-1 w-12 bg-brand" />
+                <h3 className="text-xl md:text-2xl">{p.title}</h3>
+                <p className="mt-3 text-base leading-relaxed text-muted">{p.text}</p>
               </div>
             ))}
           </div>
